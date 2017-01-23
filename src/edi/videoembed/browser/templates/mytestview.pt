@@ -1,0 +1,20 @@
+<div class="row">
+  <h1>Das ist ein Test</h1>
+  <p> Wir wollen den neuen Player testen </p>
+</div>
+
+<div class="row">
+<div class="video-wrapper">
+<video width="640" height="360" style="width: 100%; height: 100%;" controls>
+    <source type="video/youtube" src="http://www.youtube.com/watch?v=nOEw9iiopwI" />
+</video>
+</div>
+</div>
+
+<!--<script src="" tal:attributes="src string:${view/portal_url}/++resource++plone.app.jquery.js"></script>
+<script src="" tal:attributes="src string:${view/portal_url}/++resource++collective.mediaelementjs/mediaelement-and-player.min.js"></script>
+<script src="" tal:attributes="src string:${view/portal_url}/++resource++collective.mediaelement.js"></script>-->
+<!--<script>
+    var player = new MediaElementPlayer('#player1');
+</script>-->
+<!--<script src="" tal:attributes="src string:${view/portal_url}/++resource++edi.videoembed/integration.js"></script>-->

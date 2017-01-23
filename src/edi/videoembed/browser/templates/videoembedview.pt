@@ -1,0 +1,32 @@
+<div id="edi.videoembedview">
+
+  <div class="row" tal:content="structure provider:plone.abovecontenttitle"/>
+  <div tal:condition="view/showtitle" class="row"><h1 tal:content="context/title"/></div>
+  <div class="row" tal:content="structure provider:plone.belowcontenttitle"/>
+  <div tal:condition="view/showdescription" class="row"><p><b tal:content="context/description"/></p></div>
+  <div tal:condition="view/textbefore" class="row"><span tal:replace="structure view/textbefore"/></div>
+
+  <div tal:condition="view/src" class="row">
+    <div style="margin-bottom:12px" tal:condition="not:view/caption" class="video-wrapper">
+      <video width="640" height="360" style="width: 100%; height: 100%;" controls>
+        <source type="video/youtube" tal:attributes="src view/src;type view/videotype"/>
+      </video>
+    </div>
+    <dl tal:condition="view/caption" class="image-inline captioned">
+      <dt class="video-wrapper">
+        <video width="640" height="360" style="width: 100%; height: 100%;" controls>
+          <source type="video/youtube" tal:attributes="src view/src"/>
+        </video>
+      </dt>
+      <dd class="image-caption" style="width:100%;" tal:content="view/caption"></dd>
+    </dl>
+  </div>
+  <div tal:condition="view/embed" class="row">
+     <div tal:attributes="class view/videoformat">
+       <span tal:replace="structure view/embed"/>
+     </div>
+  </div> 
+
+  <div tal:condition="view/textafter" class="row"><span tal:replace="structure view/textafter"/></div>
+
+</div>

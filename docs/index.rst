@@ -1,0 +1,5 @@
+====================
+edi.videoembed
+====================
+
+User documentation
