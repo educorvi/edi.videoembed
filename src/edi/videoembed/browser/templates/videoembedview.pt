@@ -36,4 +36,6 @@
 
   <div tal:condition="view/textafter" class="row"><span tal:replace="structure view/textafter"/></div>
 
+  <div class="row" tal:content="structure provider:plone.belowcontentbody"/>
+
 </div>
