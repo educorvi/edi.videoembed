@@ -23,11 +23,9 @@
   </div>
 
   <div tal:condition="view/embed" class="row">
-     <div tal:condition="not:view/caption" tal:attributes="class view/videoformat">
        <span tal:replace="structure view/embed"/>
-     </div>
      <dl tal:condition="view/caption" class="image-inline captioned">
-       <dt tal:attributes="class view/videoformat">
+       <dt>
          <span tal:replace="structure view/embed"/>
        </dt>
        <dd class="image-caption" style="width:100%;" tal:content="view/caption"></dd>
