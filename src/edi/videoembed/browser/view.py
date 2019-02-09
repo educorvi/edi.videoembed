@@ -28,7 +28,7 @@ class VideoEmbedView(api.Page):
         self.caption = u''
         if self.context.caption:
             self.caption = self.context.caption
-        self.videoformat = "embed-responsive embed-responsive-16by9"
+        self.videoformat = "row embed-responsive embed-responsive-16by9"
         if self.context.videoformat == "embed-responsive-4by3":
-            self.videoformat = "embed-responsive embed-responsive-4by3"
+            self.videoformat = "row embed-responsive embed-responsive-4by3"
 
