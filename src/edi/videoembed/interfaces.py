@@ -1,36 +1,33 @@
 # -*- coding: utf-8 -*-
 """Module where all interfaces, events and exceptions live."""
 import random
+import datetime
 from edi.videoembed import _
-from five import grok
 from zope import schema
 from zope.interface import Interface
 from DateTime import DateTime
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-from zope.schema.interfaces import IContextAwareDefaultFactory
-from Products.CMFCore.utils import getToolByName
 from plone.namedfile.field import NamedBlobImage
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.app.textfield import RichText
 from plone.supermodel import directives
+from plone import api as ploneapi
 
 formatVocabulary = SimpleVocabulary.fromItems((
     (u"4:3", "embed-responsive-4by3"),
     (u"16:9", "embed-responsive-16by9")))
 
-@grok.provider(IContextAwareDefaultFactory)
-def genWebcode(context):
-    aktuell=unicode(DateTime()).split(' ')[0]
-    neujahr='%s/01/01' %str(DateTime()).split(' ')[0][:4]
-    konstante=unicode(aktuell[2:4])
-    zufallszahl=unicode(random.randint(100000, 999999))
-    code=konstante+zufallszahl
-    pcat=getToolByName(context,'portal_catalog')
-    results = pcat(Webcode=code, created={"query":[neujahr,aktuell],"range":"minmax"})
+def genWebcode():
+    aktuell = datetime.date.today().isoformat()
+    neujahr = datetime.date(datetime.date.today().year, 1,1).isoformat()
+    konstante = datetime.date.today().year - 2000
+    zufallszahl = random.randint(100000, 999999)
+    code = str(konstante + zufallszahl)
+    results = ploneapi.content.find(Webcode=code, created={"query":[neujahr,aktuell],"range":"minmax"})
     while results:
-        zufallszahl=unicode(random.randint(100000, 999999))
-        code=konstante+zufallszahl
-        results = pcat(Webcode=code, created={"query":[neujahr,aktuell],"range":"minmax"})
+        zufallszahl = random.randint(100000, 999999)
+        code = str(konstante + zufallszahl)
+        results = ploneapi.content.find(Webcode=code, created={"query":[neujahr,aktuell],"range":"minmax"})
     return code
 
 class IEdiVideoembedLayer(IDefaultBrowserLayer):

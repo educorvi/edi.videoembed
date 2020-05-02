@@ -1,10 +1,26 @@
-<div id="edi.videoembedview">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="example.conference">
+<body>
 
-  <div class="row" tal:content="structure provider:plone.abovecontenttitle"/>
-  <div tal:condition="view/showtitle" class="row"><h1 tal:content="context/title"/></div>
-  <div class="row" tal:content="structure provider:plone.belowcontenttitle"/>
-  <div tal:condition="view/showdescription" class="row"><p><b tal:content="context/description"/></p></div>
-  <div tal:condition="view/textbefore" class="row"><span tal:replace="structure view/textbefore"/></div>
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+<div class="container" id="edi.videoembedview">
+
+  <div class="row">
+    <div class="col-12">
+      <div tal:content="structure provider:plone.abovecontenttitle"/>
+      <h1 tal:condition="view/showtitle" tal:content="context/title"/>
+      <div tal:content="structure provider:plone.belowcontenttitle"/>
+      <p class="documentDescription" tal:content="context/description"/>
+      <span tal:condition="view/textbefore" tal:replace="structure view/textbefore"/>
+    </div>
+  </div>
 
   <div tal:condition="view/src" class="row">
     <div style="margin-bottom:12px" tal:condition="not:view/caption" class="video-wrapper">
@@ -32,8 +48,18 @@
      </dl>
   </div> 
 
-  <div tal:condition="view/textafter" class="row"><span tal:replace="structure view/textafter"/></div>
-
+  <div tal:condition="view/textafter" class="row">
+    <div class="col-12">  
+      <span tal:replace="structure view/textafter"/>
+    </div>
+  </div>
+  
   <div class="row" tal:content="structure provider:plone.belowcontentbody"/>
 
 </div>
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

@@ -38,12 +38,10 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'plone.api',
-        'Products.GenericSetup>=1.8.2',
-        'setuptools',
         'z3c.jbot',
+        'plone.api>=1.8.4',
+        'plone.restapi',
         'plone.app.dexterity',
-        'collective.mediaelementjs',
     ],
     extras_require={
         'test': [

@@ -11,7 +11,6 @@
       layer="edi.videoembed.interfaces.IEdiVideoembedLayer"
       />
 
-
   <browser:resourceDirectory
     name="edi.videoembed"
     directory="static" />
@@ -22,5 +21,13 @@
       type="plone"
       directory="static"
       />-->
+
+    <browser:page
+        name="videoembedview"
+        for="edi.videoembed.interfaces.IVideoembed"
+        class=".view.VideoEmbedView"
+        template="templates/videoembedview.pt"
+        permission="zope2.View"
+        />
 
 </configure>

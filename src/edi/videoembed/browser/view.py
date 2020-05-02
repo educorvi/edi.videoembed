@@ -1,16 +1,13 @@
 from zope.interface import Interface
-from uvc.api import api
 from plone import api as ploneapi
+from Products.Five import BrowserView
 
-api.templatedir('templates')
+class VideoEmbedView(BrowserView):
 
-class VideoEmbedView(api.Page):
-    api.context(Interface)
-
-    def update(self):
+    def __call__(self):
         self.portal_url = ploneapi.portal.get().absolute_url()
-        self.showtitle = self.context.showtitle
-        self.showdescription = self.context.showdescription
+        self.showtitle = True
+        self.showdescription = True
         self.src = self.context.src
         self.videotype = 'video/mp4'
         if self.src:
@@ -31,4 +28,4 @@ class VideoEmbedView(api.Page):
         self.videoformat = "row embed-responsive embed-responsive-16by9"
         if self.context.videoformat == "embed-responsive-4by3":
             self.videoformat = "row embed-responsive embed-responsive-4by3"
-
+        return self.index()
